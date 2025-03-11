@@ -9,6 +9,11 @@ export HELM_DIFF_IGNORE_UNKNOWN_FLAGS=true
 export SOPS_AGE_KEY_FILE=~/.age/key.txt
 
 ##
+## git
+##
+alias gsf='git submodule foreach git pull origin $(git_main_branch)'
+
+##
 ## psql
 ##
 function k-run-psql() {
