@@ -60,3 +60,30 @@ function k-run-psql() {
     return 1
   fi
 }
+
+##
+## Kubernetes
+##
+#alias k-dep-netshoot="kubectl create deployment tmp-shell --image=nicolaka/netshoot --replicas=2 -- sleep 1d"
+# spin up a throw away container for debugging.
+function k-run-netshoot() {
+  kubectl run tmp-shell-$(date +%s) --rm -i --tty --privileged \
+    --namespace default \
+    --labels "app=ops" \
+    --image nicolaka/netshoot \
+    -- /bin/bash
+}
+# spin up a container on the host's network namespace.
+function k-run-netshooth() {
+  if [[ $# -ge 1 ]]; then
+    kubectl run tmp-shell-$(date +%s) --rm -i --tty --privileged \
+      --namespace default \
+      --labels "app=ops" \
+      --image nicolaka/netshoot \
+      --overrides='{"apiVersion":"v1","spec":{"hostNetwork":true,"affinity":{"nodeAffinity":{"requiredDuringSchedulingIgnoredDuringExecution":{"nodeSelectorTerms":[{"matchExpressions":[{"key":"kubernetes.io/hostname","operator":"In","values":["'$1'"]}]}]}}}}}' \
+      -- /bin/bash
+  else
+    echo 1>&2 "usage: $0 <node>"
+    return 1
+  fi
+}
