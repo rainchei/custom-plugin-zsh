@@ -17,7 +17,7 @@ alias gsf='git submodule foreach git pull origin $(git_main_branch)'
 ## psql
 ##
 function k-run-psql() {
-  image="postgres:14.2"
+  image="postgres:latest"
   t=$(date +%s)
 
   # exec script
