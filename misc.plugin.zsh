@@ -11,7 +11,7 @@ export SOPS_AGE_KEY_FILE=~/.age/key.txt
 ##
 ## git
 ##
-alias gsf='git submodule foreach git pull origin $(git_main_branch)'
+alias gsf="git submodule foreach 'git pull origin master || git pull origin main'"
 
 ##
 ## psql
