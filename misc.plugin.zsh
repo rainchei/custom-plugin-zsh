@@ -1,9 +1,7 @@
 ##
 ## claude-code
 ##
-export ANTHROPIC_BASE_URL="https://openrouter.ai/api"
-export ANTHROPIC_AUTH_TOKEN=$(security find-generic-password -a "OpenRouter" -s "CLAUDE_CODE_KEY" -w)
-export ANTHROPIC_API_KEY=""  # explicitly clear the standard Anthropic key to avoid conflicts
+export OPENROUTER_API_KEY=$(security find-generic-password -a "OpenRouter" -s "CLAUDE_CODE_KEY" -w)
 
 ##
 ## helm-diff
