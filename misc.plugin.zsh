@@ -1,9 +1,4 @@
 ##
-## claude-code
-##
-export OPENROUTER_API_KEY=$(security find-generic-password -a "OpenRouter" -s "CLAUDE_CODE_KEY" -w)
-
-##
 ## helm-diff
 ##
 export HELM_DIFF_IGNORE_UNKNOWN_FLAGS=true
